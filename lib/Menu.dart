@@ -29,11 +29,12 @@ class NavDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(
                   Icons.input,
-                textDirection: TextDirection.rtl,
               ),
               title: Text(
-                'پرفایل کاربری',
-                textAlign: KTextAlignmentRight,
+                'پروفایل کاربری',
+                style: PersianFonts.Vazir.copyWith(
+                    fontSize: 20
+                ),
               ),
               onTap: () => {},
             ),
