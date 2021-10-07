@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'constant/constantCss.dart';
+import 'package:storapp/constant/constantCss.dart';
 import 'package:persian_fonts/persian_fonts.dart';
 class NavDrawer extends StatelessWidget {
   @override
@@ -11,19 +11,22 @@ class NavDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text(
-                'فروشگاه اینترنتی شهدا',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
+              child: Align(
+                alignment: Alignment(1, 0.8),
+                child: Text(
+                  'آنلاین شاپ',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 30,
+                  ),
+                  textAlign: KTextAlignmentRight,
                 ),
-                textAlign: KTextAlignmentRight,
               ),
               decoration: BoxDecoration(
                 color: Colors.green,
-                // image: DecorationImage(
-                //     fit: BoxFit.fill,
-                //     image: AssetImage('assets/images/cover.jpg'))
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('images/onlineShop.jpg'))
               ),
             ),
             ListTile(
