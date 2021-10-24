@@ -27,29 +27,34 @@ class ListCategory extends StatelessWidget {
                 itemBuilder: (BuildContext ctxt, int index) {
                   return Row(
                     children: [
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            width: 70.0,
-                            height: 70.0,
-                            margin: EdgeInsets.only(
-                                left: 8.0, top: 10.0, right: 8.0, bottom: 10.0),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Icon(
-                                Icons.add_shopping_cart_outlined,
-                                color: Colors.grey[600],
-                                ),
-                          ),
-                          Text(
-                            products[index],
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              fontFamily: PersianFonts.Vazir.toString(),
+                      GestureDetector(
+                        onTap: ()=>{
+                          Navigator.pushNamed(context, '/category')
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              width: 70.0,
+                              height: 70.0,
+                              margin: EdgeInsets.only(
+                                  left: 8.0, top: 10.0, right: 8.0, bottom: 10.0),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(50)),
+                              child: Icon(
+                                  Icons.add_shopping_cart_outlined,
+                                  color: Colors.grey[600],
+                                  ),
                             ),
-                          )
-                        ],
+                            Text(
+                              products[index],
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontFamily: PersianFonts.Vazir.toString(),
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   );

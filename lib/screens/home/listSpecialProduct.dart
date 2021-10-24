@@ -58,7 +58,7 @@ class SpecialProduct extends StatelessWidget {
                       Column(
                         children: <Widget>[
                           Container(
-                              width: 350.0,
+                              width: 360.0,
                               height: 150.0,
                               margin: EdgeInsets.only(
                                   left: 8.0,
@@ -94,7 +94,7 @@ class SpecialProduct extends StatelessWidget {
 
                                 ),
                                 Container(
-                                  width: 200.0,
+                                  width: 210.0,
                                   height: 150.0,
                                   child: Column(
                                     children: <Widget>[
@@ -142,9 +142,9 @@ class SpecialProduct extends StatelessWidget {
                                           boxShadow: [
                                             BoxShadow(
                                               color: Colors.blueGrey.withOpacity(0.1),
-                                              spreadRadius: 3,
-                                              blurRadius: 2,
-                                              offset: Offset(0, 2), // changes position of shadow
+                                              spreadRadius: 5,
+                                              blurRadius: 5,
+                                              offset: Offset(0, 4), // changes position of shadow
                                             ),
                                           ],
                                         ),
@@ -159,7 +159,8 @@ class SpecialProduct extends StatelessWidget {
                                                 child: Row(
                                                   children: <Widget>[
                                                     Icon(Icons.shopping_basket,
-                                                    color: Colors.grey),
+                                                    color: Colors.red
+                                                    ),
                                                     SizedBox(width: 5.0),
                                                     Text(
                                                    'خرید'
@@ -168,13 +169,21 @@ class SpecialProduct extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(width: 2.0,
+                                            child: Text(
+                                              '|',
+                                              style: TextStyle(
+                                                color: Colors.grey
+                                              ),
+                                            ),),
                                             Container(
                                               width: 110.0,
                                               height: 50.0,
+                                              margin: EdgeInsets.only(right: 5.0),
                                               child: Row(
                                                 children: <Widget>[
-                                                  Icon(Icons.add_shopping_cart_outlined,color: Colors.grey),
-
+                                                  Icon(FontAwesome.heart,color: Colors.red),
+                                                  SizedBox(width: 5.0),
                                                   Text(
                                                       'دوسش دارم'
                                                   )
@@ -192,7 +201,6 @@ class SpecialProduct extends StatelessWidget {
                                 ],
                               )
                           ),
-
                         ],
                       )
                     ],
