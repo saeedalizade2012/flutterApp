@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:storapp/screens/home/listProductWithDescription.dart';
 import 'package:storapp/screens/listCategory/listCategoryProduct.dart';
-import 'package:storapp/sidemenu/Menu.dart';
+import 'package:storapp/screens/menu/Menu.dart';
 import 'package:storapp/constant/constantCss.dart';
-import 'package:storapp/screens/home/searchBox.dart';
-import 'package:storapp/screens/home/listCategory.dart';
-import 'package:storapp/screens/home/slider.dart';
-import 'package:storapp/screens/home/listSpecialProduct.dart';
 import 'package:storapp/screens/products/products.dart';
+import 'package:storapp/screens/home/home.dart';
+import 'package:storapp/screens/menu/profile.dart';
+import 'package:storapp/screens/signIn/loginIn.dart';
+
 
 
 void main() {
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomePage(title: 'آنلاین شاپ'),
+        '/': (context) => MyHomePage(title: KTextAppBar),
         '/category': (context) =>listCategory(),
         '/products': (context) =>Products()
       },
@@ -56,6 +55,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Widget> _tabItems = [Home(), listCategory(),Home(), ProfileUser(),LoginScreen()];
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final mediaQuery = MediaQuery.of(context);
     return SafeArea(
       child: Scaffold(
+        extendBody: true,
         backgroundColor: KprimaryColor,
         drawer: NavDrawer(),
         appBar: AppBar(
@@ -113,26 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           letIndexChange: (index) => true,
         ),
-        body: ListView(
-          children: [
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  SearchBox(),
-                  KsizeBox,
-                  ListCategory(),
-                  KsizeBox,
-                  SliderHome(),
-                  KsizeBox,
-                  SpecialProduct(),
-                  KsizeBox,
-                  listProductWithDescription(),
-                ],
-              ),
-            ),
-          ],
-        ),
+        body: _tabItems[_page],
       ),
     );
   }

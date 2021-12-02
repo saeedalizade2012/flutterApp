@@ -58,7 +58,7 @@ class SpecialProduct extends StatelessWidget {
                       Column(
                         children: <Widget>[
                           Container(
-                              width: 360.0,
+                              width: 380.0,
                               height: 150.0,
                               margin: EdgeInsets.only(
                                   left: 8.0,
@@ -94,7 +94,7 @@ class SpecialProduct extends StatelessWidget {
 
                                 ),
                                 Container(
-                                  width: 210.0,
+                                  width: 230.0,
                                   height: 150.0,
                                   child: Column(
                                     children: <Widget>[

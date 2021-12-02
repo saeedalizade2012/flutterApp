@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:persian_fonts/persian_fonts.dart';
 import 'package:storapp/constant/constantCss.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class listProductWithDescription extends StatelessWidget {
   List<dynamic> products = [
@@ -81,12 +79,17 @@ class listProductWithDescription extends StatelessWidget {
                                     child: Stack(
                                       children: <Widget>[
                                         Container(
-                                            child: ClipRRect(
-                                              child: FadeInImage.assetNetwork(
-                                                placeholder:
-                                                    'images/loaderApp.gif',
-                                                image: products[index]
-                                                    ['urlProduct'],
+                                            child: Padding(
+                                              padding:  EdgeInsets.all(8.0),
+                                              child: Center(
+                                                child: ClipRRect(
+                                                  child: FadeInImage.assetNetwork(
+                                                    placeholder:
+                                                        'images/loaderApp.gif',
+                                                    image: products[index]
+                                                        ['urlProduct'],
+                                                  ),
+                                                ),
                                               ),
                                             )),
                                         Align(
@@ -116,7 +119,7 @@ class listProductWithDescription extends StatelessWidget {
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:  EdgeInsets.all(8.0),
                                               child: Text(
                                                 products[index]['country']
                                                     .toString(),

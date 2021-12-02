@@ -34,7 +34,11 @@ dependencies:
   carousel_slider: ^4.0.0
   flutter_icons: ^1.1.0
   curved_navigation_bar: ^1.0.1
-  flutter_zoom_drawer : ^2.1.1
+  responsive_grid: ^2.0.0
+  flutter_login: ^2.2.1
+  http: ^0.13.3
+  crypto: ^3.0.1
+  woocommerce_api: ^0.1.0
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +59,7 @@ flutter:
   assets:
     - images/onlineShop.jpg
     - images/loaderApp.gif
+    - images/login.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

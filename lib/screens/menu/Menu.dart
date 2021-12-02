@@ -11,23 +11,12 @@ class NavDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Align(
-                alignment: Alignment(1, 0.8),
-                child: Text(
-                  'آنلاین شاپ',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 30,
-                  ),
-                  textAlign: KTextAlignmentRight,
-                ),
-              ),
               decoration: BoxDecoration(
                 color: Colors.green,
                 image: DecorationImage(
                     fit: BoxFit.fill,
                     image: AssetImage('images/onlineShop.jpg'))
-              ),
+              ), child: null,
             ),
             ListTile(
               leading: Icon(
