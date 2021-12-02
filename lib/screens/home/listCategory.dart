@@ -61,8 +61,11 @@ class _ListCategoryHomeState extends State<ListCategoryHome> {
 
   Future<List> getCategoriesOfClass() async{
     FetchDataFromWoocommerce fetchDataFromWoocommerce = FetchDataFromWoocommerce(endPoint: "products/categories");
-    categoriesData = await fetchDataFromWoocommerce.getCategories();
-    return categoriesData ;
+  categoriesData = await fetchDataFromWoocommerce.getCategories();
+    setState(() {
+      return categoriesData ;
+    });
+
   }
   Container buildContainer(String typeDevice,String linkImage) {
     var right = (typeDevice =='Column') ? 8.0 : 30.0;
@@ -79,8 +82,7 @@ class _ListCategoryHomeState extends State<ListCategoryHome> {
         height: 200.0,
         width: 200.0,
         placeholder: AssetImage('images/loaderApp.gif'),
-        image: NetworkImage((linkImage != null) ?
-        linkImage : AssetImage('images/login.png')),
+        image: NetworkImage((linkImage != null) ?  linkImage : AssetImage('images/login.png')),
         fit: BoxFit.cover,
       ),
     );

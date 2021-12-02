@@ -110,7 +110,9 @@ class _listCategoryState extends State<listCategory> {
   Future<List> getCategoriesOfClass() async{
     FetchDataFromWoocommerce fetchDataFromWoocommerce = FetchDataFromWoocommerce(endPoint: "products/categories");
     categoriesData = await fetchDataFromWoocommerce.getCategories();
+    setState(() {
       return categoriesData ;
+    });
   }
 
   int countBoxShow() {

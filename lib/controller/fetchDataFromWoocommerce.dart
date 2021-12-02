@@ -22,4 +22,18 @@ class FetchDataFromWoocommerce{
     }
     return categories;
   }
+
+  getSpecialProduct() async {
+    // Get data using the "products" endpoint
+    var specialProduct = await wooCommerceAPI.getAsync(this.endPoint);
+    List  products = [];
+    for (var product in specialProduct) {
+      if (product['images'] != null && product['images'][0]['src'] != null && product['images'][0]['src'] != false) {
+        products.add(product);
+      }
+    }
+    return products;
+  }
 }
+
+
