@@ -3,6 +3,7 @@ import 'package:persian_fonts/persian_fonts.dart';
 import 'package:storapp/constant/constantCss.dart';
 import 'package:storapp/constant/ResponsiveDevice.dart';
 import 'package:storapp/controller/fetchDataFromWoocommerce.dart';
+import 'package:storapp/screens/products/products.dart';
 class ListCategoryHome extends StatefulWidget {
   @override
   _ListCategoryHomeState createState() => _ListCategoryHomeState();
@@ -31,7 +32,12 @@ class _ListCategoryHomeState extends State<ListCategoryHome> {
                     children: [
                       GestureDetector(
                         onTap: () =>
-                        {Navigator.pushNamed(context, '/category')},
+                        {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
+                              Products(  id :  categoriesData[index]['id'])
+                          ),
+                          )
+                        },
                         child: Column(
                           children: <Widget>[
                             ResponsiveDevice(

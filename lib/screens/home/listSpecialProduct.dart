@@ -189,9 +189,8 @@ class _SpecialProductState extends State<SpecialProduct> {
   }
 
   Future<List> getSpecialProduct() async{
-    FetchDataFromWoocommerce fetchDataFromWoocommerce = FetchDataFromWoocommerce(endPoint: "products");
+    FetchDataFromWoocommerce fetchDataFromWoocommerce = FetchDataFromWoocommerce(endPoint: "products?featured=true");
     specialProduct = await fetchDataFromWoocommerce.getSpecialProduct();
-    print(specialProduct);
     setState(() {
       return specialProduct ;
     });

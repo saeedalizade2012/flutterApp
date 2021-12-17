@@ -39,6 +39,9 @@ dependencies:
   http: ^0.13.3
   crypto: ^3.0.1
   woocommerce_api: ^0.1.0
+  flutter_spinkit: ^5.1.0
+  html: ^0.15.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

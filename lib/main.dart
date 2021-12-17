@@ -5,10 +5,10 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:storapp/screens/listCategory/listCategoryProduct.dart';
 import 'package:storapp/screens/menu/Menu.dart';
 import 'package:storapp/constant/constantCss.dart';
-import 'package:storapp/screens/products/products.dart';
 import 'package:storapp/screens/home/home.dart';
 import 'package:storapp/screens/menu/profile.dart';
 import 'package:storapp/screens/signIn/loginIn.dart';
+import 'controller/route_generator.dart';
 
 
 
@@ -37,18 +37,20 @@ class MyApp extends StatelessWidget {
         primaryColor: KprimaryColor,
       ),
       initialRoute: '/',
-      routes: {
+    /*  routes: {
         '/': (context) => MyHomePage(title: KTextAppBar),
         '/category': (context) =>listCategory(),
-        '/products': (context) =>Products()
-      },
+        '/products': (context) =>Products(id:ModalRoute.of(context).settings.arguments)
+      },*/
+      onGenerateRoute: RouteGenerator.GenerateRoute,
+
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
+  MyHomePage({Key key, @required this.title}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -61,7 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     return SafeArea(
       child: Scaffold(
         extendBody: true,
@@ -85,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Builder(
               builder: (context) => IconButton(
                 icon: Icon(FlutterIcons.basket_sli),
-                onPressed: () => Navigator.pushNamed(context, '/'),
+                onPressed: () => Navigator.pushNamed(context, '/',arguments: MyHomePage(title: 'شاپ آنلاین')),
               ),
             ),
           ],

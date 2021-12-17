@@ -34,6 +34,13 @@ class FetchDataFromWoocommerce{
     }
     return products;
   }
+
+  getProductInfo() async{
+    // Get data using the "products" endpoint
+     Map<String, dynamic> myMap = Map<String, dynamic>.from(await wooCommerceAPI.getAsync(this.endPoint));
+
+     return myMap;
+  }
 }
 
 

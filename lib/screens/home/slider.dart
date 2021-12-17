@@ -10,8 +10,7 @@ final List<String> imgList = [
   'https://dkstatics-public.digikala.com/digikala-adservice-banners/6f321832856a7ec2a2fcde4e4d6f2899606fd9cf_1632395144.jpg?x-oss-process=image/quality,q_80',
 ];
 
-final List<Widget> imageSliders = imgList
-    .map((item) => Container(
+final List<Widget> imageSliders = imgList .map((item) => Container(
     margin: EdgeInsets.all(5.0),
     child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
