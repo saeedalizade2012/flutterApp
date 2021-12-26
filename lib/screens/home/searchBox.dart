@@ -10,7 +10,7 @@ class SearchBox extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(10.0),
         child: Material(
-          elevation: 10.0,
+          elevation: 5.0,
           borderRadius: BorderRadius.circular(50),
           child: TextFormField(
             textAlign: KTextAlignmentRight,

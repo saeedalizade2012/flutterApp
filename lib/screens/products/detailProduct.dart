@@ -8,14 +8,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:persian_fonts/persian_fonts.dart';
 import 'package:storapp/controller/fetchDataFromWoocommerce.dart';
-
-final List<String> imgList = [
-  'https://dkstatics-public.digikala.com/digikala-adservice-banners/6f321832856a7ec2a2fcde4e4d6f2899606fd9cf_1632395144.jpg?x-oss-process=image/quality,q_80',
-  'https://dkstatics-public.digikala.com/digikala-adservice-banners/83546e4ef66d4a9f8ad1b1ee16d305c20efbb0af_1632319190.jpg?x-oss-process=image/quality,q_80',
-  'https://dkstatics-public.digikala.com/digikala-adservice-banners/5f37b45d530de64385a7b89d31771bbe68e85df0_1632684593.jpg?x-oss-process=image/quality,q_80',
-  'https://dkstatics-public.digikala.com/digikala-adservice-banners/d0ce66f275a1267d85257c377831fc2efbe0e0ef_1632316441.jpg?x-oss-process=image/quality,q_80',
-  'https://dkstatics-public.digikala.com/digikala-adservice-banners/6f321832856a7ec2a2fcde4e4d6f2899606fd9cf_1632395144.jpg?x-oss-process=image/quality,q_80',
-];
+import 'package:storapp/controller/widgetApp.dart';
 
 class DetailProduct extends StatefulWidget {
   final int id;
@@ -63,107 +56,68 @@ class _DetailProductState extends State<DetailProduct> {
     }
 
     return SafeArea(
-      child: (loading)
-          ? Loader()
-          : Scaffold(
-              backgroundColor: KprimaryColor,
-              drawer: NavDrawer(),
-              appBar: AppBar(
-                elevation: 0,
-                iconTheme: IconThemeData(color: Colors.red),
-                leading: Builder(
-                  builder: (BuildContext context) {
-                    return IconButton(
-                      color: Colors.red,
-                      icon: Icon(Icons.menu),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                    );
-                  },
-                ),
-                actions: [
-                  Builder(
-                    builder: (context) => IconButton(
-                      icon: Icon(FlutterIcons.basket_sli),
-                      onPressed: () => Navigator.pop(context),
+      child: (loading) ? Loader() : WidgetApp(
+        body: ListView(children: [
+        Column(
+          children: <Widget>[
+            SizedBox(
+              height: height / 3.5,
+              width: width,
+              child: CarouselSlider(
+                items: imageSliders,
+                carouselController: _controller,
+                options: CarouselOptions(
+                    autoPlay: true,
+                    enlargeCenterPage: false,
+                    aspectRatio: 2.0,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    }),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: imageSliders.asMap().entries.map((entry) {
+                return GestureDetector(
+                    onTap: () => _controller.animateToPage(entry.key),
+                    child: Container(
+                      width: 50.0,
+                      height: 50.0,
+                      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                      child: Image.network(images[entry.key]['src']),
+                    ));
+              }).toList(),
+            ),
+            KsizeBox,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(10.0),
+                  decoration:  BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding:  EdgeInsets.all(8.0),
+                    child: Text(
+                        _parseHtmlString(getPro['description']),
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontFamily: PersianFonts.Vazir.toString(),
+                        ),
+                        textAlign: TextAlign.start
                     ),
                   ),
-                ],
-                title: Center(child: Text('آنلاین شاپ')),
-              ),
-              bottomNavigationBar: CurvedNavigationBar(
-                key: _bottomNavigationKey,
-                index: 2,
-                height: 60.0,
-                items: <Widget>[
-                  Icon(Icons.add, size: 30),
-                  Icon(Icons.list, size: 30),
-                  Icon(Icons.home, size: 30),
-                  Icon(Icons.call_split, size: 30),
-                  Icon(Icons.perm_identity, size: 30),
-                ],
-                color: Colors.white,
-                buttonBackgroundColor: Colors.redAccent[100],
-                backgroundColor: KprimaryColor,
-                animationCurve: Curves.easeInOutSine,
-                animationDuration: Duration(milliseconds: 600),
-                onTap: (index) {
-                  setState(() {
-                    _page = index;
-                  });
-                },
-                letIndexChange: (index) => true,
-              ),
-              body: ListView(children: [
-                Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: height / 3.5,
-                      width: width,
-                      child: CarouselSlider(
-                        items: imageSliders,
-                        carouselController: _controller,
-                        options: CarouselOptions(
-                            autoPlay: true,
-                            enlargeCenterPage: false,
-                            aspectRatio: 2.0,
-                            onPageChanged: (index, reason) {
-                              setState(() {
-                                _current = index;
-                              });
-                            }),
-                      ),
-                    ),
-                    KsizeBox,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.all(10.0),
-                          decoration:  BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.0),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding:  EdgeInsets.all(8.0),
-                            child: Text(
-                                _parseHtmlString(getPro['description']),
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontFamily: PersianFonts.Vazir.toString(),
-                              ),
-                                textAlign: TextAlign.start
-                            ),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
                 )
-              ]),
-            ),
+              ],
+            )
+          ],
+        )
+      ]), indexCurve: 2)
     );
   }
 

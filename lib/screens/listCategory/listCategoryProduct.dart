@@ -4,6 +4,7 @@ import 'package:storapp/controller/fetchDataFromWoocommerce.dart';
 import 'package:storapp/screens/loader.dart';
 import 'package:persian_fonts/persian_fonts.dart';
 import 'package:storapp/screens/products/products.dart';
+import 'package:storapp/controller/widgetApp.dart';
 
 class listCategory extends StatefulWidget {
   @override
@@ -31,68 +32,86 @@ class _listCategoryState extends State<listCategory> {
     var height = size.size.height;
     var percentSize = (width / height) / 1.1;
     return SafeArea(
-      child: loading
-          ? Loader()
-          : LayoutBuilder(
-                builder: (context, constraints) => GridView.count(
-                    primary: false,
-                    padding: const EdgeInsets.all(20),
-                    crossAxisSpacing: 2,
-                    mainAxisSpacing: 2,
-                    crossAxisCount: countBoxShow(),
-                    childAspectRatio: percentSize * aspectRatio(percentSize),
-                    children: List.generate(
-                      categoriesData.length,
-                      (index) => Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: GestureDetector(
-                            onTap: () =>
-                            {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
-                                  Products(  id :  categoriesData[index]['id'])
-                              ),
-                              )
-                            },
-                          child: Card(
-                            child: Container(
-                              height: width / 3,
+      child: loading  ? Loader()  : WidgetApp(
+        body: LayoutBuilder(
+        builder: (context, constraints) => GridView.count(
+            primary: false,
+            padding: const EdgeInsets.all(20),
+            crossAxisSpacing: 2,
+            mainAxisSpacing: 2,
+            crossAxisCount: countBoxShow(),
+            childAspectRatio: percentSize * aspectRatio(percentSize),
+            children: List.generate(
+              categoriesData.length,
+                  (index) => Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: GestureDetector(
+                  onTap: () =>
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
+                        Products(  id :  categoriesData[index]['id'])
+                    ),
+                    )
+                  },
+                  child: Card(
+                    child: Container(
+                      height: height / 3,
+                      width: width / 2,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: FadeInImage(
+                              height: 200.0,
                               width: 200.0,
-                              child: Column(
-                                children: [
-                                  FadeInImage(
-                                    height: 200.0,
-                                    width: 200.0,
-                                    placeholder:
-                                        AssetImage('images/loaderApp.gif'),
-                                    image: NetworkImage((categoriesData[index]['image']['src'].toString() !=  null)
-                                        ? categoriesData[index]['image']['src']
-                                            .toString()
-                                        : AssetImage('images/login.png')),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Container(
-                                    color:Colors.redAccent,
-                                    height: width / 8,
-                                    width: 200.0,
-                                    child: Center(
-                                      child: Text(
-                                        categoriesData[index]['name'],
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18.0,
-                                          fontFamily: PersianFonts.Vazir.toString(),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                              placeholder:
+                              AssetImage('images/loaderApp.gif'),
+                              image: NetworkImage((categoriesData[index]['image']['src'].toString() !=  null)
+                                  ? categoriesData[index]['image']['src']
+                                  .toString()
+                                  : AssetImage('images/login.png')),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Container(
+                            height: width / 8,
+                            width: width / 2,
+                            child: Center(
+                              child: Text(
+                                categoriesData[index]['name'],
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                  fontFamily: PersianFonts.Vazir.toString(),
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                          Container(
+                            height: width / 8,
+                            width: width / 2,
+                            decoration: BoxDecoration(
+                              color: Colors.redAccent,
+                            ),
+                            child: Center(
+                              child: Text(
+                               '${categoriesData[index]['count'].toString()} محصول',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
+                                  fontFamily: PersianFonts.Vazir.toString(),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ).toList()),
+                    ),
+                  ),
+                ),
               ),
+            ).toList()),
+      ),indexCurve: 1,)
     );
   }
 
@@ -129,7 +148,7 @@ class _listCategoryState extends State<listCategory> {
     if (isPortrait == Orientation.portrait) {
       print('portrait');
       if (percentSize < 0.5) {
-        return 1.495;
+        return 1.45;
       } else if (percentSize > 0.5) {
         return 1.6;
       }
